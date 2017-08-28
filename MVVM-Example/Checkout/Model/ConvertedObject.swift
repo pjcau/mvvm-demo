@@ -8,19 +8,33 @@
 
 import Foundation
 
-public class ConvertedObject {
-    private(set) public var fromType:ConversionType?
-    private(set) public var toType:ConversionType?
+protocol ConvertedObjectProtocol {
+    
+    func allCurrenciesToString() -> String
+    func allCurrencies() -> [String]
+    func getWithQuote(_ quote:[String:Float]) -> ConvertedObject
+    
+}
+
+
+ public class ConvertedObject {
+    public let fromType:ConversionType?
+    public let toType:ConversionType?
     
     private(set) public var listCurrency : [String:String] = [:]
     private(set) public var listCurrencyWithquotes : [String:Float] = [:]
-
+    
     init(fromType:ConversionType = .Dollar, toType:ConversionType = .Euro ,currencyList:[String:String],listCurrencyWithquotes:[String:Float] =  [:]) {
         self.fromType = fromType
         self.toType = toType
         self.listCurrency = currencyList
         self.listCurrencyWithquotes = listCurrencyWithquotes
     }
+    
+ 
+}
+
+extension ConvertedObject : ConvertedObjectProtocol {
     
     func allCurrenciesToString() -> String {
         let keys = self.allCurrencies()
@@ -40,7 +54,4 @@ public class ConvertedObject {
         return ConvertedObject(fromType:self.fromType!,toType:self.toType!, currencyList:self.listCurrency, listCurrencyWithquotes:quote)
 
     }
-  
-    
-    
 }

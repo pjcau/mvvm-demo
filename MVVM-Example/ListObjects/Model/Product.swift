@@ -6,6 +6,14 @@
 //  Copyright © 2017 Pierre Jonny Cau. All rights reserved.
 //
 
+
+protocol ProductProtocol {
+    
+     func changeQuantity(quantity: UInt32) -> Product
+    
+}
+
+
 enum QuantityContainer {
     case bag
     case dozen
@@ -26,8 +34,8 @@ public class Product {
     public let price: Float32?
     internal let quantityContainer: QuantityContainer?
     public let good: Goods?
-    public var quantity: Int32?
-
+    public let quantity: Int32?
+    
     
     init(price: Float32, good:Goods,quantity:Int32 = 0) {
         
@@ -54,19 +62,25 @@ public class Product {
             self.quantityContainer = .can
         }
         print("Product are this element: name is \(String(describing: self.name!)), quantityContainer is \(String(describing: self.quantityContainer!)), good is \(String(describing: self.good!)), price is \(String(describing: self.price!)), quantity is  \(String(describing: self.quantity!))")
-
+        
     }
-    
 
-    public  func changeQuantity(quantity: UInt32) -> Product {
-        return Product(price:price! , good: good!, quantity: Int32(quantity))
-    }
     
     public static func ==(lhs: Product, rhs: Product) -> Bool{
         return  lhs.name == rhs.name &&
             lhs.price == rhs.price &&
             lhs.quantityContainer == rhs.quantityContainer
     }
+
     
+    
+}
+
+
+extension Product : ProductProtocol {
+    
+    public  func changeQuantity(quantity: UInt32) -> Product {
+        return Product(price:price! , good: good!, quantity: Int32(quantity))
+    }
     
 }

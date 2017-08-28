@@ -8,7 +8,21 @@
 
 import Foundation
 
-enum Event {
+
+protocol ProductsListProtocol {
+    
+    func checkBasketIsEmpty()
+    func getElement()
+    func totalPrice()
+    func addProduct(product:Product)
+    func removeProduct(product:Product)
+    func removeAll() -> Void
+    func modifyProduct(product:Product, quantity:UInt32)
+    func getTotalPrice() -> Float32
+}
+
+
+ enum Event {
     case initObject
     case getElement
     case addProduct
@@ -24,7 +38,7 @@ class ProductsList {
     var products = [Product]()
     
     let dispatchQueue = DispatchQueue(label: "com.jonnycau.MVVM-Example.SerialQueue", attributes: .concurrent)
-
+    
     var productListListener  = DynamicBind<( Event,  Bool,  Any)>(.initObject,false, "")
     
     var basketEmptyListener  = DynamicBind<  Bool>(false)
@@ -35,12 +49,17 @@ class ProductsList {
         self.products.append(Product(price: 2.10,good: .eggs))
         self.products.append(Product(price: 1.30,good: .milk))
         self.products.append(Product(price: 0.73,good: .beans))
- 
+  
      }
     
     init(_ products:[Product]) {
         self.products.append(contentsOf: products)
      }
+    
+}
+
+
+extension ProductsList : ProductsListProtocol {
     
     func checkBasketIsEmpty() {
         dispatchQueue.async(flags: .barrier) {
@@ -54,8 +73,9 @@ class ProductsList {
     /// - Returns: Products Array
     func getElement() {
         dispatchQueue.async(flags: .barrier) {
-             self.productListListener.value = (operation: .getElement, onSuccess: true, value: self.products)
-
+ 
+            self.productListListener.value = (operation: .getElement, onSuccess: true, value: self.products)
+            
         }
     }
     
@@ -85,7 +105,7 @@ class ProductsList {
         dispatchQueue.async(flags: .barrier) {
             guard let index = self.products.index(where: { $0 == product }) else {
                 self.productListListener.value = (operation: .removeProduct, onSuccess: false, value: "")
-
+ 
                 return
             }
             
@@ -101,7 +121,6 @@ class ProductsList {
         dispatchQueue.async(flags: .barrier) {
             self.products.removeAll()
             self.productListListener.value = (operation: .removeAll, onSuccess: true, value: "")
-
         }
     }
     
@@ -132,4 +151,5 @@ class ProductsList {
         }
         return totalPrice
     }
+
 }
