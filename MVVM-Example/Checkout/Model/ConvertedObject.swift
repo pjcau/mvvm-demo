@@ -21,8 +21,8 @@ protocol ConvertedObjectProtocol {
     public let fromType:ConversionType?
     public let toType:ConversionType?
     
-    private(set) public var listCurrency : [String:String] = [:]
-    private(set) public var listCurrencyWithquotes : [String:Float] = [:]
+    public let listCurrency : [String:String]?
+    public let listCurrencyWithquotes : [String:Float]?
     
     init(fromType:ConversionType = .Dollar, toType:ConversionType = .Euro ,currencyList:[String:String],listCurrencyWithquotes:[String:Float] =  [:]) {
         self.fromType = fromType
@@ -31,7 +31,6 @@ protocol ConvertedObjectProtocol {
         self.listCurrencyWithquotes = listCurrencyWithquotes
     }
     
- 
 }
 
 extension ConvertedObject : ConvertedObjectProtocol {
@@ -44,14 +43,14 @@ extension ConvertedObject : ConvertedObjectProtocol {
     }
     
     func allCurrencies() -> [String] {
-        let keys:[String] = self.listCurrency.flatMap(){  $0.0  }
+        let keys:[String] = self.listCurrency!.flatMap(){  $0.0  }
 
         return keys.sorted(){$0 < $1}
     }
     
     func getWithQuote(_ quote:[String:Float]) -> ConvertedObject {
       
-        return ConvertedObject(fromType:self.fromType!,toType:self.toType!, currencyList:self.listCurrency, listCurrencyWithquotes:quote)
+        return ConvertedObject(fromType:self.fromType!,toType:self.toType!, currencyList:self.listCurrency!, listCurrencyWithquotes:quote)
 
     }
 }

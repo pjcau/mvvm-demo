@@ -7,10 +7,8 @@
 //
 
 
-protocol ProductProtocol {
-    
+protocol ProductProtocol {    
      func changeQuantity(quantity: UInt32) -> Product
-    
 }
 
 
@@ -71,9 +69,7 @@ public class Product {
             lhs.price == rhs.price &&
             lhs.quantityContainer == rhs.quantityContainer
     }
-
-    
-    
+ 
 }
 
 

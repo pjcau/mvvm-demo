@@ -101,7 +101,7 @@ class CheckOutViewModel : NSObject {
     func pickerViewFromVMfromTitle(_ row: Int) -> String? {
         let key = self.currencySupported?.allCurrencies()[row]
         
-        let value =  self.currencySupported?.listCurrency[(key!)]
+        let value =  self.currencySupported?.listCurrency?[(key!)]
         
         return "\(key!) - \(value!)"
     }
@@ -109,7 +109,7 @@ class CheckOutViewModel : NSObject {
     func pickerViewFromVMFromSelected(_ row: Int) {
         
         let key = "USD" + (self.currencySupported?.allCurrencies()[row])!
-        guard let factor = self.currencySupported?.listCurrencyWithquotes[key] else {
+        guard let factor = self.currencySupported?.listCurrencyWithquotes?[key] else {
             return
         }
         let valueConverted = factor * self.valueInDollar!
@@ -120,7 +120,5 @@ class CheckOutViewModel : NSObject {
         self.totalValueListener.value =  stringLabel.appending(" and cost \(valueConverted) \(String(describing:( self.currencySupported?.allCurrencies()[row])!))")
         
     }
-    
-    
-    
+ 
 }
