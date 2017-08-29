@@ -30,7 +30,7 @@ class ConvertedObjectTest: XCTestCase {
         let convertedObject = ConvertedObject.init(currencyList:mockarrayList)
         
         XCTAssertNotNil(convertedObject, "The ConvertedObject should not be nil.")
-        XCTAssertTrue(convertedObject.listCurrency == mockarrayList, "The convertedObject listCurrency should be equal to value mockarray.")
+        XCTAssertTrue(convertedObject.listCurrency! == mockarrayList, "The convertedObject listCurrency should be equal to value mockarray.")
         
     }
     
@@ -46,9 +46,9 @@ class ConvertedObjectTest: XCTestCase {
         
         XCTAssertNotNil(convertedObject, "The ConvertedObject should not be nil.")
         
-        XCTAssertTrue(convertedObject.listCurrency == mockarrayList, "The convertedObject listCurrency should be equal to value mockarrayList.")
+        XCTAssertTrue(convertedObject.listCurrency! == mockarrayList, "The convertedObject listCurrency should be equal to value mockarrayList.")
         
-        XCTAssertTrue(convertedObject.listCurrencyWithquotes == mockarrayValue, "The convertedObject listValue should be equal to value mockarrayValue.")
+        XCTAssertTrue(convertedObject.listCurrencyWithquotes! == mockarrayValue, "The convertedObject listValue should be equal to value mockarrayValue.")
         
         XCTAssertTrue(convertedObject.fromType == conversionFromType, "The convertedObject fromType should be equal to value conversionFromType.")
         
