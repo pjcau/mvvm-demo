@@ -37,7 +37,7 @@ class ProductsListViewModel  {
             self?.checkOutListener.value = isEmpty
         })
         
-         self.productsList.checkBasketIsEmpty()
+        self.productsList.checkBasketIsEmpty()
     }
     
     
@@ -78,7 +78,6 @@ class ProductsListViewModel  {
             switch operation {
                 
             case .getElement:
-                self?.productsList.products = value as! [Product]
                 self?.tableViewListener.value = (type:.reloadAll,index:-1)
                 
             case .addProduct, .removeProduct,.removeAll:
@@ -88,10 +87,8 @@ class ProductsListViewModel  {
                 
             case .modifyProduct:
                 if onSuccess {
-                    let (allProducts, indexValue) = value as! ([Product], Int)
-                    self?.productsList.products = allProducts
+                    let (_, indexValue) = value as! ([Product], Int)
                     self?.tableViewListener.value = (type:.reloadIndex,index:indexValue)
-
                 }
             case .initObject:
                 break

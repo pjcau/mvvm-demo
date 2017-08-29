@@ -14,10 +14,6 @@ protocol ProductsListProtocol {
     func checkBasketIsEmpty()
     func getElement()
     func totalPrice()
-    func addProduct(product:Product)
-    func removeProduct(product:Product)
-    func removeAll() -> Void
-    func modifyProduct(product:Product, quantity:UInt32)
     func getTotalPrice() -> Float32
 }
 
@@ -35,7 +31,7 @@ protocol ProductsListProtocol {
 
 class ProductsList {
     
-    var products = [Product]()
+    private(set) public var products = [Product]()
     
     let dispatchQueue = DispatchQueue(label: "com.jonnycau.MVVM-Example.SerialQueue", attributes: .concurrent)
     
@@ -56,37 +52,6 @@ class ProductsList {
         self.products.append(contentsOf: products)
      }
     
-}
-
-
-extension ProductsList : ProductsListProtocol {
-    
-    func checkBasketIsEmpty() {
-        dispatchQueue.async(flags: .barrier) {
-            let products = self.products.filter{ $0.quantity! > 0 }            
-             self.basketEmptyListener.value = (products.count == 0)
-        }
-    }
-    
-    /// Get Elements From self.products elements
-    ///
-    /// - Returns: Products Array
-    func getElement() {
-        dispatchQueue.async(flags: .barrier) {
- 
-            self.productListListener.value = (operation: .getElement, onSuccess: true, value: self.products)
-            
-        }
-    }
-    
-    func totalPrice() {
-        dispatchQueue.async(flags: .barrier) {
-           
-             self.productListListener.value = (operation: .totalPrice, onSuccess: true, value:  self.getTotalPrice())
-
-        }
-    }
-    
     /// Add Object to array
     ///
     /// - Parameter product: Product to add
@@ -105,13 +70,13 @@ extension ProductsList : ProductsListProtocol {
         dispatchQueue.async(flags: .barrier) {
             guard let index = self.products.index(where: { $0 == product }) else {
                 self.productListListener.value = (operation: .removeProduct, onSuccess: false, value: "")
- 
+                
                 return
             }
             
             self.products.remove(at: index)
             self.productListListener.value = (operation: .removeProduct, onSuccess: true, value: "")
-
+            
         }
     }
     
@@ -132,7 +97,7 @@ extension ProductsList : ProductsListProtocol {
         dispatchQueue.async(flags: .barrier) {
             guard let index = self.products.index(where: { $0 == product }) else {
                 self.productListListener.value = (operation: .modifyProduct, onSuccess: false, value:"")
-
+                
                 return
             }
             let newProduct = product.changeQuantity(quantity: quantity)
@@ -140,6 +105,33 @@ extension ProductsList : ProductsListProtocol {
             self.products.insert(newProduct, at: index)
             self.productListListener.value = (operation: .modifyProduct, onSuccess: true, value: (self.products,index))
             
+        }
+    }
+    
+}
+
+
+extension ProductsList : ProductsListProtocol {
+    
+    func checkBasketIsEmpty() {
+        dispatchQueue.async(flags: .barrier) {
+            let products = self.products.filter{ $0.quantity! > 0 }            
+             self.basketEmptyListener.value = (products.count == 0)
+        }
+    }
+    
+    /// Get Elements From self.products elements
+    ///
+    /// - Returns: Products Array
+    func getElement() {
+        dispatchQueue.async(flags: .barrier) {
+            self.productListListener.value = (operation: .getElement, onSuccess: true, value: self.products)
+        }
+    }
+    
+    func totalPrice() {
+        dispatchQueue.async(flags: .barrier) {
+             self.productListListener.value = (operation: .totalPrice, onSuccess: true, value:  self.getTotalPrice())
         }
     }
    
