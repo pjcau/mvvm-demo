@@ -3,18 +3,15 @@ workflows:
     name: iOS Native
     environment:
       vars:
-        XCODE_SCHEME: "MVVM-Example" # <-- Put the name of your Xcode scheme here
-        XCODE_PROJECT: "MVVM-Example" # <-- Put the name of your Xcode scheme here
-
-      xcode: latest
-      cocoapods: default
+        XCODE_SCHEME: "MVVM-Example"  
+        XCODE_PROJECT: "MVVM-Example" 
     scripts:
      - name: Build App
-        script: |
+       script: |
           xcodebuild build -project "$XCODE_PROJECT.xcodeproj" - scheme "$XCODE_SCHEME" CODE_SIGNING_REQUIRED=NO
-    - name: iOS test
-      script: |
+     - name: iOS test
+       script: |
         xcode-project run-tests \
-          --project mvvm-demo
+          --project mvvm-demo \
           --scheme MVVM-ExampleTests \
           --device "iPhone 15"
