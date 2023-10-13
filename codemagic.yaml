@@ -1,4 +1,14 @@
 workflows:
-    sample-workflow:
-        name: Codemagic Sample Workflow
-        max_build_duration: 120
+  ios-native-workflow:
+    name: iOS Native
+    environment:
+      vars:
+        XCODE_SCHEME: "MVVM-Example" # <-- Put the name of your Xcode scheme here
+      xcode: latest
+      cocoapods: default
+    scripts:
+    - name: iOS test
+      script: | 
+        xcode-project run-tests \
+          --scheme MVVM-ExampleTests \
+          --device "iPhone 15"
