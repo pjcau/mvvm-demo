@@ -1,7 +1,6 @@
 workflows:
   ios-native-workflow:
     name: iOS Native
-
     environment:
       vars:
         XCODE_SCHEME: "MVVM-Example"  
@@ -16,5 +15,12 @@ workflows:
         xcode-project run-tests \
           --project MVVM-Example.xcodeproj \
           --scheme MVVM-ExampleTests \
+          --device "iPhone 15 Pro"
+           - name: iOS test
+     - name: iOS UItest
+       script: |
+        xcode-project run-tests \
+          --project MVVM-Example.xcodeproj \
+          --scheme MVVM-ExampleUITests \
           --device "iPhone 15 Pro"
 
