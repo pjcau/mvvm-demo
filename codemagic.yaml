@@ -4,11 +4,16 @@ workflows:
     environment:
       vars:
         XCODE_SCHEME: "MVVM-Example" # <-- Put the name of your Xcode scheme here
+        XCODE_PROJECT: "MVVM-Example" # <-- Put the name of your Xcode scheme here
+
       xcode: latest
       cocoapods: default
     scripts:
+     - name: Build App
+        script: |
+          xcodebuild build -project "$XCODE_PROJECT.xcodeproj" - scheme "$XCODE_SCHEME" CODE_SIGNING_REQUIRED=NO
     - name: iOS test
-      script: | 
+      script: |
         xcode-project run-tests \
           --project mvvm-demo
           --scheme MVVM-ExampleTests \
