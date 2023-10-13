@@ -8,7 +8,7 @@ workflows:
     scripts:
      - name: Build App
        script: |
-          xcodebuild build -project "$XCODE_PROJECT.xcodeproj" - scheme "$XCODE_SCHEME" CODE_SIGNING_REQUIRED=NO
+          xcodebuild build -project "$XCODE_PROJECT.xcodeproj" - scheme "$XCODE_SCHEME" XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED "NO"
      - name: iOS test
        script: |
         xcode-project run-tests \
