@@ -44,7 +44,7 @@ public enum NetworkError: Error {
 
     case .networkProblem(_): return 10001
     case .unknown(_):        return 10002
-    case .userCancelled(_):  return 99999
+    case .userCancelled:  return 99999
     }
   }
 }

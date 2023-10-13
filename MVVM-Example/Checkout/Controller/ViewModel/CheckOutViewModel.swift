@@ -30,7 +30,7 @@ class CheckOutViewModel : NSObject {
     
     var  totalValueListener = DynamicBind<String>("")
     
-    var  failureAlertListener = DynamicBind<(String?, String?)>("","")
+    var  failureAlertListener = DynamicBind<(String?, String?)>(("",""))
 
     
     init(passProductlist productsList: ProductsList) {

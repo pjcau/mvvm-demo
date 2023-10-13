@@ -22,7 +22,7 @@ class ProductsListViewModel  {
     
     typealias eventTupleType = (Event,  Bool,  Any)
 
-    var  tableViewListener = DynamicBind<(ReloadType,Int)>(.reloadAll,-1)
+    var  tableViewListener = DynamicBind<(ReloadType,Int)>((.reloadAll,-1))
     var  checkOutListener = DynamicBind<Bool>(false)
 
     // MARK - Initialization

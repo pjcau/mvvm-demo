@@ -24,7 +24,6 @@
 		5F3C115A1F06380B00777403 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3C114D1F06380B00777403 /* Main.storyboard */; };
 		5F3C115B1F06380B00777403 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3C114D1F06380B00777403 /* Main.storyboard */; };
 		5F3C115C1F06380B00777403 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3C114D1F06380B00777403 /* Main.storyboard */; };
-		5F3C115D1F06380B00777403 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F3C114F1F06380B00777403 /* Info.plist */; };
 		5F3C11871F0A3E1000777403 /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C117D1F0A3E1000777403 /* CheckOutViewController.swift */; };
 		5F3C11881F0A3E1000777403 /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C117D1F0A3E1000777403 /* CheckOutViewController.swift */; };
 		5F3C11891F0A3E1000777403 /* CheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C117D1F0A3E1000777403 /* CheckOutViewController.swift */; };
@@ -70,8 +69,6 @@
 		5FA4CD471F4C088400A548F5 /* URLSession+MainQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA4CD3F1F4B802F00A548F5 /* URLSession+MainQueue.swift */; };
 		5FA4CD481F4C088500A548F5 /* URLSession+MainQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA4CD3F1F4B802F00A548F5 /* URLSession+MainQueue.swift */; };
 		5FA4CD4C1F4C08FD00A548F5 /* NetworkClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA4CD4B1F4C08FD00A548F5 /* NetworkClientTests.swift */; };
-		5FC08D461F3FA74D003E69BF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FC08D451F3FA74D003E69BF /* Info.plist */; };
-		5FC08D481F3FA75C003E69BF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FC08D471F3FA75C003E69BF /* Info.plist */; };
 		5FC08D491F3FA86A003E69BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C11181F0637AE00777403 /* AppDelegate.swift */; };
 		5FC08D4A1F3FA86A003E69BF /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCB42C71F157C930044F313 /* ProductListViewModel.swift */; };
 		5FC08D4B1F3FA86A003E69BF /* ProductsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCB42C41F157AA60044F313 /* ProductsList.swift */; };
@@ -521,6 +518,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -544,7 +542,6 @@
 				5F3C11541F06380B00777403 /* Assets.xcassets in Resources */,
 				5F3C115A1F06380B00777403 /* Main.storyboard in Resources */,
 				5F3C11571F06380B00777403 /* LaunchScreen.storyboard in Resources */,
-				5F3C115D1F06380B00777403 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +549,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FC08D461F3FA74D003E69BF /* Info.plist in Resources */,
 				5F3C115B1F06380B00777403 /* Main.storyboard in Resources */,
 				5F3C11551F06380B00777403 /* Assets.xcassets in Resources */,
 				5F3C11581F06380B00777403 /* LaunchScreen.storyboard in Resources */,
@@ -563,7 +559,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FC08D481F3FA75C003E69BF /* Info.plist in Resources */,
 				5F3C115C1F06380B00777403 /* Main.storyboard in Resources */,
 				5F3C11561F06380B00777403 /* Assets.xcassets in Resources */,
 				5F3C11591F06380B00777403 /* LaunchScreen.storyboard in Resources */,
@@ -802,7 +797,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jonnycau.MVVM-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -815,7 +810,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jonnycau.MVVM-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -829,7 +824,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jonnycau.MVVM-ExampleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MVVM-Example.app/MVVM-Example";
 			};
 			name = Debug;
@@ -844,7 +839,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jonnycau.MVVM-ExampleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MVVM-Example.app/MVVM-Example";
 			};
 			name = Release;
@@ -858,7 +853,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jonnycau.MVVM-ExampleUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "MVVM-Example";
 			};
 			name = Debug;
@@ -872,7 +867,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jonnycau.MVVM-ExampleUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "MVVM-Example";
 			};
 			name = Release;

@@ -35,7 +35,7 @@ class ProductsList {
     
     let dispatchQueue = DispatchQueue(label: "com.jonnycau.MVVM-Example.SerialQueue", attributes: .concurrent)
     
-    var productListListener  = DynamicBind<( Event,  Bool,  Any)>(.initObject,false, "")
+    var productListListener  = DynamicBind<( Event,  Bool,  Any)>((.initObject,false, ""))
     
     var basketEmptyListener  = DynamicBind<  Bool>(false)
     

@@ -112,7 +112,7 @@ class ListTableViewController: UITableViewController  {
         let indexPath = IndexPath(row: path, section: 0)
         
         self.tableView?.beginUpdates()
-        self.tableView?.reloadRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.fade) //try other animations
+        self.tableView?.reloadRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.fade) //try other animations
         self.tableView?.endUpdates()
     }
     
