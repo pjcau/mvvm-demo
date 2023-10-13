@@ -16,7 +16,6 @@ workflows:
           --project MVVM-Example.xcodeproj \
           --scheme MVVM-ExampleTests \
           --device "iPhone 15 Pro"
-           - name: iOS test
      - name: iOS UItest
        script: |
         xcode-project run-tests \
