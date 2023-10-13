@@ -1,10 +1,12 @@
 workflows:
   ios-native-workflow:
     name: iOS Native
+
     environment:
       vars:
         XCODE_SCHEME: "MVVM-Example"  
         XCODE_PROJECT: "MVVM-Example" 
+      xcode: 15.0
     scripts:
      - name: Build App
        script: |
