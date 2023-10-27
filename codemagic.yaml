@@ -2,10 +2,12 @@ workflows:
   ios-native-workflow:
     name: iOS Native
     environment:
-      vars:
+       groups:
+           - manual_code_signing
+       vars:
         XCODE_SCHEME: "MVVM-Example"  
         XCODE_PROJECT: "MVVM-Example" 
-      xcode: 15.0
+       xcode: 15.0
     triggering:
       events:
         - push
@@ -14,19 +16,36 @@ workflows:
           include: true
           source: true
     scripts:
+     - name: Set up keychain to be used for codesigning using Codemagic CLI 'keychain' command
+       script: |
+        keychain initialize
+     - name: set up provisioning profiles
+       script: |
+            PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
+            mkdir -p "$PROFILES_HOME"
+            PROFILE_PATH="$(mktemp "$PROFILES_HOME"/$(uuidgen).mobileprovision)"
+            echo ${CM_PROVISIONING_PROFILE} | base64 --decode > $PROFILE_PATH
+            echo "Saved provisioning profile $PROFILE_PATH"  
+     - name: Add signing certificate to keychain
+       script: |
+            echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
+            keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $CM_CERTIFICATE_PASSWORD    
      - name: Build App
        script: |
-        xcodebuild clean build -project "MVVM-Example.xcodeproj" -scheme "MVVM-Example" -sdk iphoneos -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+            xcodebuild clean build -project $XCODE_PROJECT" -scheme "$XCODE_SCHEME" -sdk iphoneos -destination generic/platform=iOS CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
      - name: iOS test
        script: |
-        xcode-project run-tests \
-          --project MVVM-Example.xcodeproj \
-          --scheme MVVM-ExampleTests \
-          --device "iPhone 15 Pro"
+            xcode-project run-tests \
+             --project "$XCODE_PROJECT" \
+             --scheme "$XCODE_SCHEME" \
+             --device "iPhone 15 Pro"
      - name: iOS UItest
        script: |
-        xcode-project run-tests \
-          --project MVVM-Example.xcodeproj \
-          --scheme MVVM-ExampleUITests \
-          --device "iPhone 15 Pro"
-
+            xcode-project run-tests \
+             --project "$XCODE_PROJECT" \
+              --scheme "$XCODE_SCHEME" \
+              --device "iPhone 15 Pro"
+     - name: Set up code signing settings on Xcode project
+       script: xcode-project use-profiles
+     - name: Build .ipa
+       script: xcode-project build-ipa --project "$XCODE_PROJECT" --scheme "$XCODE_SCHEME"

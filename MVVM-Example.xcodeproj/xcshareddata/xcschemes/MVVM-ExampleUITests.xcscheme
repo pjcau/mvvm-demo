@@ -17,7 +17,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5F3C11331F0637AE00777403"
+               BlueprintIdentifier = "513C570D2AD9932500E961B5"
                BuildableName = "MVVM-ExampleUITests.xctest"
                BlueprintName = "MVVM-ExampleUITests"
                ReferencedContainer = "container:MVVM-Example.xcodeproj">

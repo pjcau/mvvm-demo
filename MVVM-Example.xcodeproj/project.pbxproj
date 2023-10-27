@@ -481,8 +481,8 @@
 					};
 					5F3C11141F0637AE00777403 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 5WA53Z6P42;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = RZ6V227NLQ;
+						ProvisioningStyle = Manual;
 					};
 					5F3C11281F0637AE00777403 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -820,12 +820,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5WA53Z6P42;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RZ6V227NLQ;
 				INFOPLIST_FILE = "$(SRCROOT)/MVVM-Example/AppDelegate/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jonnycau.MVVM-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gucci.codemagic-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Provisioning Developed Codemagic-test";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -834,12 +838,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5WA53Z6P42;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = RZ6V227NLQ;
 				INFOPLIST_FILE = "$(SRCROOT)/MVVM-Example/AppDelegate/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jonnycau.MVVM-Example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gucci.codemagic-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Provisioning_Distribution_Codemagictest;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
