@@ -4,6 +4,8 @@ workflows:
     environment:
        groups:
            - manual_code_signing
+           - apple_credentials
+           - code_signing
        vars:
         XCODE_SCHEME: "MVVM-Example"  
         XCODE_PROJECT: "MVVM-Example" 
