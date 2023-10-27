@@ -33,10 +33,10 @@ workflows:
             echo "CM_CERTIFICATE decode"
 
             if [ -n "$CM_CERTIFICATE_PASSWORD" ]; then
-              echo "CM_CERTIFICATE find"
+              echo "CM_CERTIFICATE_PASSWORD found is $CM_CERTIFICATE_PASSWORD "
               keychain add-certificates -c /tmp/certificate.p12 --certificate-password $CM_CERTIFICATE_PASSWORD    
             else
-              echo "CM_CERTIFICATE not find"
+              echo "CM_CERTIFICATE_PASSWORD not find"
               keychain add-certificates -c /tmp/certificate.p12     
             fi
      - name: Build App
