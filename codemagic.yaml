@@ -28,10 +28,15 @@ workflows:
             echo "Saved provisioning profile $PROFILE_PATH"  
      - name: Add signing certificate to keychain
        script: |
+            echo "start process"
             echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
+            echo "CM_CERTIFICATE decode"
+
             if [ -n "$CM_CERTIFICATE_PASSWORD" ]; then
+              echo "CM_CERTIFICATE find"
               keychain add-certificates -c /tmp/certificate.p12 --certificate-password $CM_CERTIFICATE_PASSWORD    
             else
+              echo "CM_CERTIFICATE not find"
               keychain add-certificates -c /tmp/certificate.p12     
             fi
      - name: Build App
